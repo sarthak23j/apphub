@@ -1,0 +1,25 @@
+.home-header{
+  height: 20vh;
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+
+.home-title{
+  font-size: 3rem;
+  margin:4rem;
+}
+
+.header-icons{
+  display: flex;
+  gap: 2.5rem;
+  justify-content: space-evenly;
+  margin: 5rem;
+}
+
+.header-each-icon{
+  height: 5rem;
+}

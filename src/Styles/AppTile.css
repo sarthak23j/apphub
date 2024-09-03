@@ -1,0 +1,49 @@
+.app-tile{
+    height: 17rem;
+    width: 25rem;
+
+    flex-shrink: 0;
+
+    border-radius: 1rem;
+    position: relative;
+}
+
+.app-tile-img{
+    height: 13rem;
+    width: 20rem;
+    object-fit: cover;
+  
+    border-radius: 1rem;
+  
+    margin: 0 2.5rem;
+}
+
+.tile-launch-button{
+    height: 3rem;
+    width: 3rem;
+    background-color: rgb(65, 171, 44);
+    border-radius: 2rem;
+  
+    position: absolute;
+    right: 4rem;
+    bottom: 5rem
+}
+  
+.tile-triangle {
+    width: 0;
+    height: 0;
+    border-top: 0.5rem solid transparent;
+    border-left: 1rem solid #d5d5d5;
+    border-bottom: 0.5rem solid transparent;
+  
+    position: absolute;
+    right: 5rem;
+    bottom: 6rem;
+}
+  
+.tile-title{
+    text-align: center;
+    margin: 1rem;
+  
+    font-size: 1.5rem;
+}

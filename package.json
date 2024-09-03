@@ -12,6 +12,7 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+    "dev":"craco build && electron .",
     "build": "craco build",
     "start": "electron .",
     "test": "react-scripts test",
@@ -38,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "electron": "^32.0.1",
     "webpack-node-externals": "^3.0.0"
   }

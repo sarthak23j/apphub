@@ -5,20 +5,30 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
+const preloads = path.join(__dirname,"elecPreload.js")
 
 function createWindow() {
-  // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    width: 1920,
+    height: 1080,
+    autoHideMenuBar:true,
+    webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+        preload: preloads
+    },
   });
-  // and load the index.html of the app.
-  console.log(__dirname);
+  
   mainWindow.loadFile(path.join(__dirname, "../build/index.html"));
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+app.whenReady().then(() => {
+  electron.ipcMain.handle("dialog.openFile",async () => {
+    const { cancelled, filePaths } = await dialog.showOpenDialog()
+    if (!cancelled){
+      return filePaths[0]
+    }
+  })
+})
+
 app.on("ready", createWindow);

@@ -1,3 +1,7 @@
+:root{
+    --clr-greyed:#5c5c5c;
+}
+
 body{
     background-color: #1b1b1b;
     color: #dbdbdb;

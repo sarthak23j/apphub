@@ -1,0 +1,16 @@
+.tiles{
+  margin: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+  
+.tile{
+  height: 17rem;
+  width: 25rem;
+
+  flex-shrink: 0;
+
+  border-radius: 1rem;
+  position: relative;
+}

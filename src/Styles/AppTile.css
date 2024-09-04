@@ -13,9 +13,12 @@
     width: 20rem;
     object-fit: cover;
   
+    border: solid transparent 4px;
     border-radius: 1rem;
   
     margin: 0 2.5rem;
+
+    cursor:pointer;
 }
 
 .tile-launch-button{
@@ -26,7 +29,9 @@
   
     position: absolute;
     right: 4rem;
-    bottom: 5rem
+    bottom: 5rem;
+
+    cursor:pointer;
 }
   
 .tile-triangle {
@@ -39,6 +44,8 @@
     position: absolute;
     right: 5rem;
     bottom: 6rem;
+    
+    cursor:pointer;
 }
   
 .tile-title{

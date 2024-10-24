@@ -1,7 +1,7 @@
 import { shell } from "electron/main"
 
-import tileArt from "../Assets/WordApp.png"
-import bannerArt from "../Assets/WordPage.png"
+import tileArt from "../Assets/WordLogo.png"
+import bannerArt from "../Assets/WordBanner.png"
 import backbtn from "../Assets/back.png"
 
 import "../Styles/SteamPage.css"

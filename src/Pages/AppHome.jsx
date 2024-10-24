@@ -1,14 +1,15 @@
 import "../Styles/AppHome.css"
 
-import Steam from "../Assets/steam.png"
-import word from "../Assets/word.png"
-import excel from "../Assets/excel.png"
-import ppt from "../Assets/ppt.png"
-import Office from "../Assets/office.png"
 import pluspng from "../Assets/plus.png"
-import WordApp from "../Assets/WordApp.png"
-import SteamPage from "../Assets/SteamPage.png"
-import WordPage from "../Assets/WordPage.png"
+
+import Office from "../Assets/OfficeLogo.png"
+import Steam from "../Assets/SteamLogo.png"
+import SteamPage from "../Assets/SteamBanner.png"
+import WordApp from "../Assets/WordLogo.png"
+import WordPage from "../Assets/WordBanner.png"
+import excel from "../Assets/GroupOffice1.png"
+import ppt from "../Assets/GroupOffice2.png"
+import word from "../Assets/GroupOffice3.png"
 
 import AppTile from "../Components/AppTile"
 import GroupTile from "../Components/GroupTile"

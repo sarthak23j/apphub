@@ -1,38 +1,135 @@
-.tile-add{
-    height: 13rem;
-    width: 20rem;
-    border: solid #5c5c5c;
-    border-radius: 1rem;
-    margin: 0 2.5rem;
-  
-    position: relative;
-  }
-  
-  .tile-add-plus{
-    border: solid #5c5c5c 4px;
-  
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-  
-    position: absolute;
-    top: calc(50% - 1.5rem);
-    left: calc(50% - 1.5rem);
-  }
-  
-  .tile-plus{
-    height: 1.5rem;
-    width: 1.5rem;
-  
-    margin: 0.7rem;
-    opacity: 0.5;
-  }
-  
-  .tile-title-new{
-    text-align: center;
-    margin: -3rem;
-  
-    font-size: 1.5rem;
-  
-    color: #5c5c5c;
-  }
+.tile-add {
+  height: 13rem;
+  width: 20rem;
+  border: solid #5c5c5c;
+  border-radius: 1rem;
+  margin: 0 2.5rem;
+  position: relative;
+}
+
+.tile-add-plus {
+  border: solid #5c5c5c 4px;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  left: calc(50% - 1.5rem);
+}
+
+.tile-plus {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.7rem;
+  opacity: 0.5;
+}
+
+.tile-title-new {
+  text-align: center;
+  margin: -3rem;
+  font-size: 1.5rem;
+  color: #5c5c5c;
+}
+
+/* Updated CSS for Popup */
+.add-new-popup {
+  border: solid grey 4px;
+  border-radius: 2rem;
+  z-index: 3;
+  opacity: 1;
+  height: auto; /* Adjust height dynamically based on content */
+  width: 30rem;
+  position: absolute;
+  top: calc(50% - 10rem);
+  left: calc(50% - 15rem);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-new-title {
+  text-align: center;
+  margin: 1rem;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  letter-spacing: 3px;
+}
+
+.add-new-button {
+  background-color: transparent; /* Transparent background */
+  padding: 1rem 2rem;
+  border: solid grey 2px; /* Grey border */
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  height: 10rem;
+  width: 10rem;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.2s ease-in-out; /* Added transition for smooth hover effect */
+}
+
+.add-new-button:first-child {
+  margin-right: 4rem;
+}
+
+.add-new-button:hover {
+  background-color: rgba(0, 255, 242, 0.5); /* Slightly darker on hover */
+}
+
+.add-new-button:first-child:hover {
+  background-color: rgba(68, 255, 0, 0.5); /* Slightly darker on hover */
+}
+
+/* Input Field Styles */
+.app-input {
+  background-color: transparent;
+  width: 80%; /* Full width of the input field */
+  padding: 0.5rem; /* Padding for better appearance */
+  margin-bottom: 1rem; /* Space between input fields */
+  border: solid 2px #5c5c5c; /* Border matching the tile */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.2rem; /* Font size for readability */
+  color: #ddd;
+}
+
+.app-input::placeholder {
+  color: #777; /* Placeholder text color */
+}
+
+.group-input {
+  background-color: transparent;
+  width: 80%; /* Full width of the input field */
+  padding: 0.5rem; /* Padding for better appearance */
+  margin-bottom: 1rem; /* Space between input fields */
+  border: solid 2px #5c5c5c; /* Border matching the tile */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.2rem; /* Font size for readability */
+  color: #ddd; /* Text color */
+}
+
+.group-input::placeholder {
+  color: #777; /* Placeholder text color */
+}
+
+.member-input {
+  background-color: transparent;
+  width: 80%; /* Full width of the input field */
+  padding: 0.5rem; /* Padding for better appearance */
+  margin-bottom: 1rem; /* Space between input fields */
+  border: solid 2px #5c5c5c; /* Border matching the tile */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.2rem; /* Font size for readability */
+  color: #333; /* Text color */
+}
+
+.submit-button {
+  background-color: #4CAF50; /* Green background color */
+  padding: 0.5rem 2rem;
+  border: none; /* No border */
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 1rem
+}

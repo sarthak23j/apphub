@@ -1,0 +1,81 @@
+.calendar-shadow-bg {
+    background-color: transparent;
+    position: absolute;
+    height: 110vh;
+    width: 110vw;
+    top: 0;
+    z-index: 10;
+}
+
+.calendar-bg {
+    height: 34rem; /* Adjusted height for better visibility */
+    width: 30rem;  /* Adjusted width for better visibility */
+    background-color: rgba(0, 0, 0, 0.95);
+    position: absolute;
+    right: 20%;
+    top: 20%;
+    z-index: 1000;
+    border: solid grey 2px;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-header button {
+    font-size: 1.5rem;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.calendar-header h2 {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+}
+
+.calendar-day {
+    padding: 1rem;
+    text-align: center;
+    border: solid grey 1px;
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
+    color: white; /* Text color for better contrast */
+    transition: background-color 0.3s; /* Transition for normal days */
+}
+
+.calendar-day:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Hover effect for days */
+}
+
+.curr-date {
+    background-color: rgba(255, 149, 0, 0.9); /* Highlight color for current date */
+    color: black; /* Change text color for better contrast */
+    font-weight: bold; /* Make the current date bold */
+    transition: none; /* Remove transition effect for curr-date */
+}
+
+.calendar-day-headers {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.calendar-day-header {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

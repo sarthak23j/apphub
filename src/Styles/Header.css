@@ -25,6 +25,7 @@ a{
   border: solid #5c5c5c 2px;
   border-radius: 2rem;
   padding-inline: 1rem;
+  position: relative;
 }
 
 .search-bar:focus-visible{
@@ -33,12 +34,60 @@ a{
 
 .input-bar{
   height: 3rem;
+  width: 100%;
   background-color: transparent;
 
-  border: none;
+  border: solid transparent 0px;
+  border-radius: 2rem;
 
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
+
+  color: #dbdbdb;
+}
+
+.dropdown {
+  position: absolute;
+  top: 130%; /* Position it right below the search bar */
+  left: 0;
+  width: 100%; /* Same width as the search bar */
+  background-color: rgba(0, 0, 0, 0.8); /* Black with 80% opacity */
+  border: solid #5c5c5c 2px; /* Matching the search bar border */
+  border-top: none; /* Remove top border to blend with search bar */
+  border-radius:2rem; /* Rounded bottom corners */
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #dbdbdb; /* Matching the search bar text color */
+  font-family: Arial, Helvetica, sans-serif; /* Matching the search bar font */
+  font-size: 1.4rem; /* Matching the search bar font size */
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight highlight on hover */
+}
+
+/* Styling the scrollbar for webkit browsers */
+.dropdown::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .header-icons{

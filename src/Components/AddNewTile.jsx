@@ -47,11 +47,28 @@ export default function AddNewTile(Props) {
     }
 
     function handleSubmit() {
+        let tempName = "" 
         if (isNewApp) {
             console.log(`Submitting New App: ${appName}`);
+            tempName = appName
         } else {
             console.log(`Submitting New Group: ${groupName}`);
+            tempName = groupName
         }
+
+        if (tempName == "Teams"){
+            Props.setAppList(prevState => ({
+                ...prevState,
+                teams: true
+            }))
+        }else if (tempName == "Browsers"){
+            Props.setAppList(prevState => ({
+                ...prevState,
+                browser: true
+            }))
+        }
+
+
         // Reset form after submission if needed
         resetForm();
         handleClosePopup();

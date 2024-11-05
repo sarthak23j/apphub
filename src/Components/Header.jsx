@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 
 import calc from "../Assets/calculator.png"
 import clock from "../Assets/clock.png"
@@ -12,8 +12,69 @@ import "../Styles/Header.css"
 
 export default function Header(Props){
 
-    const [ calcShown,setCalcShown ] = useState(false);
-    const [ calShown,setCalShown ] = useState(false);
+    const [calcShown, setCalcShown] = useState(false);
+    const [calShown, setCalShown] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredApps, setFilteredApps] = useState([]);
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+    const searchBarRef = useRef(null);
+
+    const displayNames = {
+        'steam': 'Steam',
+        'teams': 'Microsoft Teams',
+        'word': 'Microsoft Word',
+        'browser': 'Browsers',
+        'office': 'Office Tools'
+    };
+
+    const handleSearch = (event) => {
+        const value = event.target.value;
+        setSearchTerm(value);
+
+        const results = Object.keys(Props.appList).filter(app => 
+            Props.appList[app] && (
+                app.toLowerCase().includes(value.toLowerCase()) ||
+                displayNames[app].toLowerCase().includes(value.toLowerCase())
+            )
+        );
+
+        setFilteredApps(results);
+        setIsDropdownVisible(true);
+    };
+
+    const handleAppClick = (app) => {
+        console.log(`Launching ${displayNames[app]}`);
+        setSearchTerm('');
+        setFilteredApps([]);
+        setIsDropdownVisible(false);
+    };
+
+    const handleBlur = () => {
+        // Delay hiding the dropdown to allow click events on dropdown items
+        setTimeout(() => {
+            setIsDropdownVisible(false);
+        }, 200);
+    };
+
+    const handleFocus = () => {
+        if (searchTerm && filteredApps.length > 0) {
+            setIsDropdownVisible(true);
+        }
+    };
+
+    useEffect(() => {
+        // Hide dropdown when clicking outside of search bar and dropdown
+        const handleClickOutside = (event) => {
+            if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+                setIsDropdownVisible(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     function calcClicked(){
         setCalcShown(!calcShown);
@@ -30,9 +91,37 @@ export default function Header(Props){
     return(
         <header className="home-header">
             <h2 className="home-title" onClick={handleChangePage}>AppHub.</h2>
-            <div className="search-bar">
+
+            {/* <div className="search-bar">
                 <input type="text" placeholder="Search..." className="input-bar" name="search" />
+            </div> */}
+
+            <div className="search-bar" ref={searchBarRef}>
+                <input 
+                    type="text" 
+                    placeholder="Search..." 
+                    className="input-bar" 
+                    name="search" 
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                />
+                {isDropdownVisible && searchTerm && filteredApps.length > 0 && (
+                    <div className="dropdown">
+                        {filteredApps.map(app => (
+                            <div 
+                                key={app} 
+                                className="dropdown-item" 
+                                onClick={() => handleAppClick(app)}
+                            >
+                                {displayNames[app]}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
+            
             <div className="header-icons">
                 <img src={cal} alt="calendar" className="header-each-icon" onClick={calClicked}/>
                 <img src={calc} alt="calculator" className="header-each-icon" onClick={calcClicked}/>

@@ -33,7 +33,7 @@ export default function GroupTile(Props){
     }
 
     return(
-        <div className="group-tile">
+        <div className="group-tile" data-group={Props.grpTitle.toLowerCase()}>
           <div className="group-tile-bg" onClick={grpClicked}>
             {grpImage}
           </div>

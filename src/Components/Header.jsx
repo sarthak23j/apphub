@@ -10,7 +10,7 @@ import DateTimeDisplay from "./DateTimeDisplay"
 
 import "../Styles/Header.css"
 
-export default function Header(Props){
+export default function Header(Props) {
 
     const [calcShown, setCalcShown] = useState(false);
     const [calShown, setCalShown] = useState(false);
@@ -30,20 +30,42 @@ export default function Header(Props){
     const handleSearch = (event) => {
         const value = event.target.value;
         setSearchTerm(value);
-
-        const results = Object.keys(Props.appList).filter(app => 
-            Props.appList[app] && (
-                app.toLowerCase().includes(value.toLowerCase()) ||
-                displayNames[app].toLowerCase().includes(value.toLowerCase())
-            )
-        );
-
+    
+        // Filter only individual apps (exclude groups 'browser' and 'office')
+        const results = Object.keys(Props.appList).filter(app => {
+            // Check if app is shown AND is not a group AND matches search term
+            return Props.appList[app] && 
+                   app !== 'browser' && 
+                   app !== 'office' && 
+                   (app.toLowerCase().includes(value.toLowerCase()) ||
+                    displayNames[app].toLowerCase().includes(value.toLowerCase()));
+        });
+    
         setFilteredApps(results);
-        setIsDropdownVisible(true);
+        setIsDropdownVisible(value.length > 0);
     };
 
+    // In Header.jsx, update the handleAppClick function
     const handleAppClick = (app) => {
-        console.log(`Launching ${displayNames[app]}`);
+        console.log(`Handling ${app} : ${displayNames[app]}`);
+        
+        // Switch directly to the appropriate page
+        let newPageState;
+        switch(app) {
+            case 'steam':
+                newPageState = "Steam";
+                break;
+            case 'teams':
+                newPageState = "Teams";
+                break;
+            case 'word':
+                newPageState = "Word";
+                break;
+            default:
+                newPageState = "Home";
+        }
+        Props.setPageState(newPageState);
+    
         setSearchTerm('');
         setFilteredApps([]);
         setIsDropdownVisible(false);
@@ -76,11 +98,11 @@ export default function Header(Props){
         };
     }, []);
 
-    function calcClicked(){
+    function calcClicked() {
         setCalcShown(!calcShown);
     }
 
-    function calClicked(){
+    function calClicked() {
         setCalShown(!calShown);
     }
 
@@ -88,7 +110,7 @@ export default function Header(Props){
         Props.setPageState("Home")
     }
 
-    return(
+    return (
         <header className="home-header">
             <h2 className="home-title" onClick={handleChangePage}>AppHub.</h2>
 
@@ -97,11 +119,11 @@ export default function Header(Props){
             </div> */}
 
             <div className="search-bar" ref={searchBarRef}>
-                <input 
-                    type="text" 
-                    placeholder="Search..." 
-                    className="input-bar" 
-                    name="search" 
+                <input
+                    type="text"
+                    placeholder="Search..."
+                    className="input-bar"
+                    name="search"
                     value={searchTerm}
                     onChange={handleSearch}
                     onBlur={handleBlur}
@@ -110,9 +132,9 @@ export default function Header(Props){
                 {isDropdownVisible && searchTerm && filteredApps.length > 0 && (
                     <div className="dropdown">
                         {filteredApps.map(app => (
-                            <div 
-                                key={app} 
-                                className="dropdown-item" 
+                            <div
+                                key={app}
+                                className="dropdown-item"
                                 onClick={() => handleAppClick(app)}
                             >
                                 {displayNames[app]}
@@ -121,18 +143,18 @@ export default function Header(Props){
                     </div>
                 )}
             </div>
-            
+
             <div className="header-icons">
-                <img src={cal} alt="calendar" className="header-each-icon" onClick={calClicked}/>
-                <img src={calc} alt="calculator" className="header-each-icon" onClick={calcClicked}/>
+                <img src={cal} alt="calendar" className="header-each-icon" onClick={calClicked} />
+                <img src={calc} alt="calculator" className="header-each-icon" onClick={calcClicked} />
                 <DateTimeDisplay />
                 <div className="more-tab header-each-icon">
-                    
+
                 </div>
             </div>
 
-            {calShown ?  <CalendarTile toggleOff={calClicked}/> : <></>}
-            {calcShown ?  <CalculatorTile toggleOff={calcClicked}/> : <></>}
+            {calShown ? <CalendarTile toggleOff={calClicked} /> : <></>}
+            {calcShown ? <CalculatorTile toggleOff={calcClicked} /> : <></>}
 
         </header>
     )

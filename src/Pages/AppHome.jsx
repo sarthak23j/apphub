@@ -62,7 +62,7 @@ export default function AppHome(Props) {
       
       {/* Office Grp */}
       <div className={Props.appList.office ? "appTileShown" : "appTileHidden" }>
-      <GroupTile openApp={Props.openApp} grpTitle="Office Tools" grpDetails={
+      <GroupTile openApp={Props.openApp} grpTitle="Office Tools" data-group="office" grpDetails={
         [
           {
             name:"PowerPoint",
@@ -90,7 +90,7 @@ export default function AppHome(Props) {
 
       {/* Browsers */}
       <div className={Props.appList.browser ? "appTileShown" : "appTileHidden" }>
-      <GroupTile openApp={Props.openApp} grpTitle="Browsers" grpDetails={
+      <GroupTile openApp={Props.openApp} grpTitle="Browsers" data-group="browser" grpDetails={
         [
           {
             name:"Chrome",

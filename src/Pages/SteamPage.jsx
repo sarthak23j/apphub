@@ -1,5 +1,3 @@
-import { shell } from "electron"
-
 import backbtn from "../Assets/back.png"
 
 import ImageContexts from "../Components/imageContexts"

@@ -30,8 +30,7 @@ export default function SteamPage(Props){
                 {/* <img src={tileArt} alt="" className="tile-bg" /> */}
                 <div className="page-text">
                     <h2 className="page-title">Steam</h2>
-                    <h5 className="page-info">Total Time Spent : 17 hours 2 minutes 13 seconds</h5>
-                    <h5 className="page-info">30 day log : 32 minutes 49 seconds</h5>
+                    <h5 className="page-info">Time Spent :</h5>
                 </div>
             </div>
         </main>

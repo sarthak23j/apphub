@@ -27,8 +27,7 @@ export default function WordPage(Props){
                 <img src={tileArt} alt="" className="tile-bg" />
                 <div className="page-text">
                     <h2 className="page-title">Microsoft Word</h2>
-                    <h5 className="page-info">Total Time Spent :</h5>
-                    <h5 className="page-info">30 day log : </h5>
+                    <h5 className="page-info">Time Spent :</h5>
                 </div>
             </div>
         </main>

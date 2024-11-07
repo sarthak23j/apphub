@@ -34,3 +34,20 @@ export default function SteamPage(Props){
         </main>
     )
 }
+
+/*
+here is my plan : 
+
+we initially import a local file stored in assets/data.json into app.jsx for the json object holding time spent and last used data for the 3 apps
+
+whenever a user presses "launch", we record a "start timestamp", and set a "recording flag" to true
+
+whenever a user closes (that is, app.jsx is focussed again), we record a "stop timestamp" if the recording flag was true, setting it back to false
+
+then, 
+last used = stop timestamp
+time spent = stop - start timestamps
+
+would this work? give me reasons why this would not work for getting these 2 datas in a controlled environment
+
+*/

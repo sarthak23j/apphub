@@ -85,7 +85,7 @@ export default function AppHome(Props) {
       
       {/* MS Teams */}
       <div className={Props.appList.teams ? "appTileShown" : "appTileHidden" }>
-      <AppTile openApp={Props.openApp} setPageState={Props.setPageState} appId={3} bannerImg={TeamsPage} appImg={TeamsApp} appTitle="Teams" appPath="C:\Users\sarth\AppData\Local\Microsoft\Teams\Update.exe"/>
+      <AppTile openApp={Props.openApp} setPageState={Props.setPageState} appId={3} bannerImg={TeamsPage} appImg={TeamsApp} appTitle="Teams" appPath="C:\Users\sarth\OneDrive\Desktop\Microsoft Teams.lnk"/>
       </div>
 
       {/* Browsers */}

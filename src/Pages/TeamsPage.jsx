@@ -9,7 +9,7 @@ import "../Styles/SteamPage.css"
 export default function WordPage(Props){
     
     async function handleClick(){
-        Props.openApp("C:/Users/sarth/AppData/Local/Microsoft/Teams/Update.exe")
+        Props.openApp("C:/Users/sarth/OneDrive/Desktop/Microsoft Teams.lnk")
     }
 
     const handlePageChange = () => {

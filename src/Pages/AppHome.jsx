@@ -42,7 +42,6 @@ export default function AppHome(Props) {
   //     return <GroupTile key={tile.sno} grpTitle={tile.name} grpDetails={tile.details} />
   //   }
   // })
-  console.log(Props.appList)
 
   return (
     <>

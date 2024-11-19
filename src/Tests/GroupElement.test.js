@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import WordPage from '../Pages/WordPage';
+import WordPage from '../Pages/GroupElement';
 
 describe('WordPage', () => {
     const mockProps = {

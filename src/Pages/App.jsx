@@ -3,9 +3,9 @@ import { shell } from "electron";
 import * as fs from "fs";
 
 import Header from "../Components/Header"
-import WordPage from "./WordPage"
-import SteamPage from "./SteamPage"
-import TeamsPage from "./TeamsPage"
+import WordPage from "./GroupElement"
+import SteamPage from "./EventHandlers"
+import TeamsPage from "./DataInjection"
 import AppHome from "./AppHome"
 
 

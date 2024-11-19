@@ -1,7 +1,1 @@
-{
-  "steam": true,
-  "word": true,
-  "office": true,
-  "browser": false,
-  "teams": false
-}
+{"steam":true,"word":true,"office":true,"browser":false,"teams":false}

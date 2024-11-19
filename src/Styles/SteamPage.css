@@ -69,3 +69,15 @@
 .page-info{
     font-size: 1.25rem;
 }
+
+.close-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 10000vh;
+    width: 10000vw;
+
+    z-index: 10000;
+
+    background-color: rgba(0, 0, 0, 0);
+}

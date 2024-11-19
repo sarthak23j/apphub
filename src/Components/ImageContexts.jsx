@@ -6,8 +6,6 @@ const ImageContexts = ({imageName, cls}) =>{
     let imgSrc
 
     try {
-        console.log(imageContext)
-        console.log("----------------------------------------------------------------")
         imgSrc = imageContext(`./${imageName}.png`);
     } catch(err){
         console.warn(`Image ${imageName} not found`);

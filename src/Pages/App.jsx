@@ -41,6 +41,7 @@ export default function App() {
   const [appsShown, setAppsShown] = useState(appData)
 
   useEffect(() => {
+    console.log("''''''''''''''''''''''''''''''''''''''''")
     console.log("appsShown state changed:", appsShown);
     console.log("writing into data.json now")
     writeData(appsShown)

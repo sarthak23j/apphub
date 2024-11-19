@@ -1,53 +1,131 @@
-import backbtn from "../Assets/back.png"
+import { useState, useEffect } from "react";
+import backbtn from "../Assets/back.png";
+import * as fs from "fs";
+import ImageContexts from "../Components/imageContexts";
+import "../Styles/SteamPage.css";
+import { app } from "electron";
 
-import ImageContexts from "../Components/imageContexts"
-import "../Styles/SteamPage.css"
 
-export default function SteamPage(Props){
 
-    async function handleClick(){
-        Props.openApp("C:/Program Files (x86)/Steam/steam.exe")
+
+export default function SteamPage(Props) {
+    
+    const [appData, setAppData] = useState({ timeSpent: 0, lastUsed: null });
+    const [flag, setFlag] = useState(false);
+    const [timeStamps, setTimeStamps] = useState({ start: 0, end: 0 });
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const data = await fs.promises.readFile('./src/SteamData.json', 'utf8');
+                const jsonData = JSON.parse(data);
+                setAppData(jsonData);
+            } catch (error) {
+                console.error('Error reading data:', error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    async function handleStart() {
+        Props.openApp("C:/Program Files (x86)/Steam/steam.exe");
+        setFlag(true);
+        const startTime = new Date().getTime();
+        setTimeStamps(old => ({
+            ...old,
+            start: startTime
+        }));
+    }
+
+    async function handleClose() {
+        setFlag(false);
+        const endTime = new Date().getTime();
+        
+        // Update the timeStamps state
+        setTimeStamps(old => ({
+            ...old,
+            end: endTime
+        }));
+    
+        // Calculate time spent using the endTime directly
+        const timeSpent = (endTime - timeStamps.start) + appData.timeSpent;
+    
+        // Update appData with the new values
+        setAppData(prevData => ({
+            ...prevData,
+            lastUsed: endTime,
+            timeSpent: timeSpent
+        }));
+    
+        console.log(`TIMESTAMPS :: Start: ${timeStamps.start}, End: ${endTime}`);
+        console.log(appData);
+    
+        // Write the updated data to file
+        await writeData({ ...appData, timeSpent });
+    }
+
+    async function writeData(WriteData) {
+        const data = JSON.stringify(WriteData, null, 2);
+        await fs.promises.writeFile('./src/SteamData.json', data, 'utf8');
     }
 
     const handlePageChange = () => {
-        Props.setPageState("Home")
+        Props.setPageState("Home");
+    };
+
+    function toReadableTimes(temp) {
+        const hours = Math.floor(temp / 3600000);
+        const minutes = Math.floor((temp / 60000) % 60);
+        const seconds = Math.floor((temp / 1000) % 60);
+
+        let resStr = ""
+
+        if(hours > 0){
+            resStr += hours + " hours, "
+        }
+        if(minutes > 0){
+            resStr += minutes + " minutes, "
+        }
+        if(seconds > 0){
+            resStr += seconds + " seconds"
+        }
+        return resStr;
+    }
+
+    function dateTimeConv(temp) {
+        if (!temp) return 'Never used'; // Handle null case
+        const date = new Date(temp);
+        const format = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        };
+        const formattedDate = date.toLocaleString('en-US', format);
+        return formattedDate;
     }
 
     return (
         <main className="steam-main">
-            <img src={backbtn} className="go-home" onClick={handlePageChange}/>
-
-            <ImageContexts cls="banner-bg" imageName="SteamBanner"/>
-
-            {/* <img src={bannerArt} alt="" className="banner-bg" /> */}
-            <div className="launch-button" onClick={handleClick}>
+            <img src={backbtn} className="go-home" onClick={handlePageChange} />
+            <ImageContexts cls="banner-bg" imageName="SteamBanner" />
+            <div className="launch-button" onClick ={handleStart}>
                 <h2 className="launch-btn-text">Launch Now</h2>
             </div>
             <div className="below-banner">
-                <ImageContexts cls="tile-bg" imageName="SteamLogo"/>
-                {/* <img src={tileArt} alt="" className="tile-bg" /> */}
+                <ImageContexts cls="tile-bg" imageName="SteamLogo" />
                 <div className="page-text">
                     <h2 className="page-title">Steam</h2>
-                    <h5 className="page-info">Time Spent :</h5>
+                    <h5 className="page-info">Time Spent : {toReadableTimes(appData.timeSpent)}</h5>
+                    <h5 className="page-info">Last Used : {dateTimeConv(appData.lastUsed)}</h5>
                 </div>
             </div>
+            {
+                flag ? <div className="close-button" onClick={handleClose} />
+                : null
+            }
         </main>
-    )
+    );
 }
-
-/*
-here is my plan : 
-
-we initially import a local file stored in assets/data.json into app.jsx for the json object holding time spent and last used data for the 3 apps
-
-whenever a user presses "launch", we record a "start timestamp", and set a "recording flag" to true
-
-whenever a user closes (that is, app.jsx is focussed again), we record a "stop timestamp" if the recording flag was true, setting it back to false
-
-then, 
-last used = stop timestamp
-time spent = stop - start timestamps
-
-would this work? give me reasons why this would not work for getting these 2 datas in a controlled environment
-
-*/

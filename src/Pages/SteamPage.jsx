@@ -3,10 +3,6 @@ import backbtn from "../Assets/back.png";
 import * as fs from "fs";
 import ImageContexts from "../Components/imageContexts";
 import "../Styles/SteamPage.css";
-import { app } from "electron";
-
-
-
 
 export default function SteamPage(Props) {
     

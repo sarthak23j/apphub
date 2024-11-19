@@ -1,4 +1,3 @@
-import { shell } from "electron/main"
 import { useState, useEffect } from "react"
 import * as fs from "fs"
 
